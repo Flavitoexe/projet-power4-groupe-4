@@ -15,6 +15,28 @@
         </header>
 
         <main>
+            <form action="/game/init/traitement" method="post" class="gameInit">
+                <h2>Veuillez entrer les informations suivant avant de pouvoir commencer la partie.</h2>
+                <div>
+                    <label for="pseudoJoueur1">Pseudo joueur 1: </label>
+                    <input type="text" id="pseudoJoueur1" name="pseudoJoueur1" placeholder=" Pseudo joueur 1" required>
+                    <p>* Le pseudo doit être composé seulement de lettres et entre 4 et 20 caractères.</p>
+                </div>
+                <div>
+                    <label for="couleurJoueur1">Couleur joueur 1: </label>
+                    <select id="couleurJoueur1" name="couleurJoueur1">
+                        <optgroup label="Couleurs">
+                            <option value="rouge">Rouge</option>
+                            <option value="jaune">Jaune</option>
+                        </optgroup>
+                    </select>
+                </div>
+                 <div>
+                    <label for="pseudoJoueur2">Pseudo joueur 2: </label>
+                    <input type="text" id="pseudoJoueur2" name="pseudoJoueur2" placeholder=" Pseudo joueur 2" required>
+                    <p>* Le pseudo doit être composé seulement de lettres et entre 4 et 20 caractères.</p>
+                </div>
+            </form>
 
         </main>
 

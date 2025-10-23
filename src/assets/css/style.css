@@ -10,3 +10,12 @@
     font-family: "Roboto";
 }
 
+body {
+    background-color: #525257;
+}
+
+.gameInit {
+    background-color: #3a3a3a;
+    color : white;
+    padding: 15px;
+}

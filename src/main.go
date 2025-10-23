@@ -36,11 +36,18 @@ func main() {
 		name1 := r.FormValue("pseudoJoueur1")
 		name2 := r.FormValue("pseudoJoueur2")
 
+		color1 := r.FormValue("couleurJoueur1")
+		color2 := r.FormValue("couleurJoueur2")
+
 		err1 := game.TraitementPlayerInit(name1)
 		err2 := game.TraitementPlayerInit(name2)
 
-		if err1 != nil || err2 != nil {
+		if err1 != nil || err2 != nil || name1 == name2 {
 			http.Redirect(w, r, "/game/init?error=1", http.StatusSeeOther)
+		}
+
+		if color1 == color2 {
+			http.Redirect(w, r, "/game/init?error=2", http.StatusSeeOther)
 		}
 
 		http.Redirect(w, r, "/game/play", http.StatusSeeOther)

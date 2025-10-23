@@ -23,6 +23,10 @@ func main() {
 		listTemplates.ExecuteTemplate(w, "game-init", nil)
 	})
 
+	http.HandleFunc("/game/play", func(w http.ResponseWriter, r *http.Request) {
+		listTemplates.ExecuteTemplate(w, "game-play", nil)
+	})
+
 	path, _ := os.Getwd()
 	fileServer := http.FileServer(http.Dir(path + "/assets"))
 	http.Handle("/static/", http.StripPrefix("/static/", fileServer))

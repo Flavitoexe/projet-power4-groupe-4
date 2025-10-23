@@ -33,8 +33,13 @@ func main() {
 		name1 := r.FormValue("pseudoJoueur1")
 		name2 := r.FormValue("pseudoJoueur2")
 
-		game.TraitementPlayerInit(name1)
-		game.TraitementPlayerInit(name2)
+		err1 := game.TraitementPlayerInit(name1)
+		err2 := game.TraitementPlayerInit(name2)
+
+		if err1 != nil || err2 != nil {
+			http.Error(w, "Pseudos invalides (4 à 20 lettres)", http.StatusBadRequest)
+			return
+		}
 	})
 
 	path, _ := os.Getwd()

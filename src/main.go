@@ -21,7 +21,10 @@ func main() {
 	})
 
 	http.HandleFunc("/game/init", func(w http.ResponseWriter, r *http.Request) {
-		listTemplates.ExecuteTemplate(w, "game-init", nil)
+		err := r.URL.Query().Get("error")
+		listTemplates.ExecuteTemplate(w, "game-init", map[string]string{
+			"Error": err,
+		})
 	})
 
 	http.HandleFunc("/game/init/traitement", func(w http.ResponseWriter, r *http.Request) {
@@ -37,9 +40,10 @@ func main() {
 		err2 := game.TraitementPlayerInit(name2)
 
 		if err1 != nil || err2 != nil {
-			http.Error(w, "Pseudos invalides (4 à 20 lettres)", http.StatusBadRequest)
-			return
+			http.Redirect(w, r, "/game/init?error=1", http.StatusSeeOther)
 		}
+
+		http.Redirect(w, r, "/game/play", http.StatusSeeOther)
 	})
 
 	path, _ := os.Getwd()

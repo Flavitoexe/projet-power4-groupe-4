@@ -10,6 +10,11 @@ import (
 
 func main() {
 
+	data := struct {
+		Grid    game.Grille
+		Players []game.Player
+	}{}
+
 	listTemplates, errTemplate := template.ParseGlob("./templates/*.html")
 	if errTemplate != nil {
 		fmt.Println(errTemplate.Error())
@@ -50,12 +55,23 @@ func main() {
 			http.Redirect(w, r, "/game/init?error=2", http.StatusSeeOther)
 		}
 
+		player1 := game.NewPlayer(name1, color1)
+		player2 := game.NewPlayer(name2, color2)
+
+		data.Players = []game.Player{player1, player2}
+
 		http.Redirect(w, r, "/game/play", http.StatusSeeOther)
 	})
 
 	http.HandleFunc("/game/play", func(w http.ResponseWriter, r *http.Request) {
-		grille := game.InitGrille()
-		listTemplates.ExecuteTemplate(w, "game-play", grille)
+		data.Grid = game.InitGrille()
+		listTemplates.ExecuteTemplate(w, "game-play", data)
+	})
+
+	http.HandleFunc("/game/play/traitement", func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != http.MethodPost {
+			http.Redirect(w, r, "/game/play", http.StatusSeeOther)
+		}
 	})
 
 	path, _ := os.Getwd()

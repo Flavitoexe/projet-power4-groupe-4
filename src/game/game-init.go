@@ -6,6 +6,16 @@ import (
 	"strings"
 )
 
+type Player struct {
+	Name  string
+	Color string
+}
+
+func NewPlayer(name string, color string) Player {
+	player := Player{name, color}
+	return player
+}
+
 func TraitementPlayerInit(name string) error {
 
 	name = strings.TrimSpace(name)

@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"game/game"
 	"html/template"
 	"net/http"
 	"os"
@@ -24,7 +25,8 @@ func main() {
 	})
 
 	http.HandleFunc("/game/play", func(w http.ResponseWriter, r *http.Request) {
-		listTemplates.ExecuteTemplate(w, "game-play", nil)
+		grille := game.InitGrille()
+		listTemplates.ExecuteTemplate(w, "game-play", grille)
 	})
 
 	path, _ := os.Getwd()

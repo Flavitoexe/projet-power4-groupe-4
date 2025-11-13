@@ -9,13 +9,17 @@
 </head>
 <body>
     <h2>SILENCE, partie en cours</h2>
-    <p>Appuyez sur la flèche de la colonne où vous voulez placer votre pion. </p>
+    <p>Vous devez choisir où vous voulez placer votre pion grâce au menu déroulant.</p>
     <div class="div">
         <p>Joueur: </p>
         <p>Tour: </p>
         <p>Couleur: </p>
-        <div>
-            <p>grille</p>
+       <div class="grille">
+            {{range $i, $ligne := .Board}}
+            {{range $j, $case := $ligne}}
+            <div class="case">{{$case}}</div>
+                {{end}}
+            {{end}}
         </div>
         <form action="/game/play/traitement" method="post" class="div">
             <div>

@@ -53,6 +53,11 @@ func main() {
 		http.Redirect(w, r, "/game/play", http.StatusSeeOther)
 	})
 
+	http.HandleFunc("/game/play", func(w http.ResponseWriter, r *http.Request) {
+		grille := game.InitGrille()
+		listTemplates.ExecuteTemplate(w, "game-play", grille)
+	})
+
 	path, _ := os.Getwd()
 	fileServer := http.FileServer(http.Dir(path + "/assets"))
 	http.Handle("/static/", http.StripPrefix("/static/", fileServer))

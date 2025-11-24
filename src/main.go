@@ -90,7 +90,16 @@ func main() {
 			return
 		}
 
-		game.GamePlay(&currentGame.Grid, colInt, currentGame.Players, &currentGame.CurrentTurn)
+		winner := game.GamePlay(&currentGame.Grid, colInt, currentGame.Players, &currentGame.CurrentTurn)
+
+		if winner.Name == "fullCol" {
+			http.Redirect(w, r, "/game/play?error=fullCol", http.StatusSeeOther)
+			return
+		}
+		if winner.Name != "" {
+			http.Redirect(w, r, "/game/end?winner="+winner.Name, http.StatusSeeOther)
+			return
+		}
 
 		http.Redirect(w, r, "/game/play", http.StatusSeeOther)
 		return

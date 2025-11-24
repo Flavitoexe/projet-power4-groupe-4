@@ -66,7 +66,7 @@ func checkWin(grille *Grille, players [2]Player) Player {
 	return winner
 }
 
-func GamePlay(grille *Grille, col int, players [2]Player, currentTurn *int) {
+func GamePlay(grille *Grille, col int, players [2]Player, currentTurn *int) Player {
 
 	var player Player
 	if *currentTurn%2 != 0 {
@@ -77,10 +77,16 @@ func GamePlay(grille *Grille, col int, players [2]Player, currentTurn *int) {
 
 	if !addPion(grille, col, player) {
 		fmt.Println("Colonne pleine")
-		return
+		return Player{"fullCol", "None", false}
 	}
 
 	*currentTurn++
 
-	checkWin(grille, players)
+	winner := checkWin(grille, players)
+
+	if winner.Name != "" {
+		return winner
+	}
+
+	return Player{}
 }

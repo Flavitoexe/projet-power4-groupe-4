@@ -16,11 +16,11 @@
         <p>Tour: {{.CurrentTurn}}</p>
 
         {{if .IsEvenTurn}}
-            <p>Joueur : {{(index .Players 0).Name}}</p>
-            <p>Couleur : {{(index .Players 0).Color}}</p>
-        {{else}}
             <p>Joueur : {{(index .Players 1).Name}}</p>
             <p>Couleur : {{(index .Players 1).Color}}</p>
+        {{else}}
+            <p>Joueur : {{(index .Players 0).Name}}</p>
+            <p>Couleur : {{(index .Players 0).Color}}</p>
         {{end}}
 
         <div class="grille">
@@ -37,7 +37,7 @@
             {{end}}
         </div>
 
-        <form action="/game/play/traitement" method="post">
+        <form action="/game/play/traitement" method="post" class="colChoice">
             <label for="colonne">Quelle colonne choisissez-vous ? </label>
             <select id="colonne" name="colonne">
                 <optgroup label="Numéros">
@@ -52,6 +52,9 @@
             </select>
 
             <button type="submit">Envoyer</button>
+            {{if eq .Error "fullCol"}}
+            <p class="error">Colonne pleine, choisissez-en une autre.</p>
+            {{end}}
         </form>
 
     </div>

@@ -7,12 +7,13 @@ import (
 )
 
 type Player struct {
-	Name  string
-	Color string
+	Name   string
+	Color  string
+	HasWon bool
 }
 
 func NewPlayer(name string, color string) Player {
-	player := Player{name, color}
+	player := Player{name, color, false}
 	return player
 }
 

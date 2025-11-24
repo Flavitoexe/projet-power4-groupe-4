@@ -96,10 +96,12 @@ func main() {
 		return
 	})
 
-	http.HandleFunc("/game/play/traitement", func(w http.ResponseWriter, r *http.Request) {
-		if r.Method != http.MethodPost {
-			http.Redirect(w, r, "/game/init", http.StatusSeeOther)
-		}
+	http.HandleFunc("/game/end", func(w http.ResponseWriter, r *http.Request) {
+		listTemplates.ExecuteTemplate(w, "game-end", nil)
+	})
+
+	http.HandleFunc("/game/scoreboard", func(w http.ResponseWriter, r *http.Request) {
+		listTemplates.ExecuteTemplate(w, "game-scoreboard", nil)
 	})
 
 	path, _ := os.Getwd()

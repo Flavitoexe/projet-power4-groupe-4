@@ -27,6 +27,7 @@ body {
 
 .error {
     color: red;
+    padding-top: 20px;
 }
 
 h1, h2 {
@@ -101,7 +102,16 @@ button {
 
 .box_2 {
     width: 70vw;
-    height: 50vh;
+    height: 45vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-bottom: 90px;
+}
+
+.box_end {
+    width: 70vw;
+    height: 30vh;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -155,4 +165,9 @@ button {
 
 .infoIta{
     font-style: italic;
+    font-size: smaller;
+}
+
+.spaceInfo {
+    padding-top: 8px;
 }

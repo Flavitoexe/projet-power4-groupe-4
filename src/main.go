@@ -28,10 +28,12 @@ func main() {
 		os.Exit(1)
 	}
 
+	// Route principale
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		listTemplates.ExecuteTemplate(w, "menu", nil)
 	})
 
+	// Routes d'initialisation du jeu
 	http.HandleFunc("/game/init", func(w http.ResponseWriter, r *http.Request) {
 		err := r.URL.Query().Get("error")
 		listTemplates.ExecuteTemplate(w, "game-init", map[string]string{
@@ -55,11 +57,15 @@ func main() {
 		err2 := game.TraitementPlayerInit(name2)
 
 		if err1 != nil || err2 != nil || name1 == name2 {
-			http.Redirect(w, r, "/game/init?error=1", http.StatusSeeOther)
+			http.Redirect(w, r, "/game/init?error=sameName", http.StatusSeeOther)
+		}
+
+		if name1 == "" || name2 == "" {
+			http.Redirect(w, r, "/game/init?error=emptyName", http.StatusSeeOther)
 		}
 
 		if color1 == color2 {
-			http.Redirect(w, r, "/game/init?error=2", http.StatusSeeOther)
+			http.Redirect(w, r, "/game/init?error=sameColor", http.StatusSeeOther)
 		}
 
 		player1 := game.NewPlayer(name1, color1)
@@ -73,6 +79,7 @@ func main() {
 		http.Redirect(w, r, "/game/play", http.StatusSeeOther)
 	})
 
+	// Routes de fonctionnement du jeu
 	http.HandleFunc("/game/play", func(w http.ResponseWriter, r *http.Request) {
 		listTemplates.ExecuteTemplate(w, "game-play", currentGame)
 	})
@@ -90,19 +97,21 @@ func main() {
 			return
 		}
 
-		winner := game.GamePlay(&currentGame.Grid, colInt, currentGame.Players, &currentGame.CurrentTurn)
+		winner := game.GamePlay(&currentGame.Grid, colInt, currentGame.Players, &currentGame.CurrentTurn, &currentGame.IsEvenTurn)
 
 		if winner.Name == "fullCol" {
 			http.Redirect(w, r, "/game/play?error=fullCol", http.StatusSeeOther)
 			return
-		}
-		if winner.Name != "" {
+		} else if winner.Name != "" {
 			http.Redirect(w, r, "/game/end?winner="+winner.Name, http.StatusSeeOther)
+			return
+		} else if winner.Name == "Egalité" {
+			http.Redirect(w, r, "/game/end?winner=Egalité", http.StatusSeeOther)
 			return
 		}
 
 		http.Redirect(w, r, "/game/play", http.StatusSeeOther)
-		return
+
 	})
 
 	path, _ := os.Getwd()

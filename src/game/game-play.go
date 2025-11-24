@@ -1,7 +1,5 @@
 package game
 
-import "fmt"
-
 type Grille struct {
 	Board [][]string
 }
@@ -60,13 +58,13 @@ func checkWin(grille *Grille, players [2]Player) Player {
 	}
 
 	if full == cols {
-		winner = Player{"Égalité", "None", true}
+		winner = Player{"Egalité", "None", true}
 	}
 
 	return winner
 }
 
-func GamePlay(grille *Grille, col int, players [2]Player, currentTurn *int) Player {
+func GamePlay(grille *Grille, col int, players [2]Player, currentTurn *int, isEvenTurn *bool) Player {
 
 	var player Player
 	if *currentTurn%2 != 0 {
@@ -76,11 +74,12 @@ func GamePlay(grille *Grille, col int, players [2]Player, currentTurn *int) Play
 	}
 
 	if !addPion(grille, col, player) {
-		fmt.Println("Colonne pleine")
+		// fmt.Println("Colonne pleine")
 		return Player{"fullCol", "None", false}
 	}
 
 	*currentTurn++
+	*isEvenTurn = !*isEvenTurn
 
 	winner := checkWin(grille, players)
 

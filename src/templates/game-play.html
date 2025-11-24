@@ -16,11 +16,11 @@
         <p>Tour: {{.CurrentTurn}}</p>
 
         {{if .IsEvenTurn}}
-            <p>Joueur : {{(index .Players 0).Name}}</p>
-            <p>Couleur : {{(index .Players 0).Color}}</p>
-        {{else}}
             <p>Joueur : {{(index .Players 1).Name}}</p>
             <p>Couleur : {{(index .Players 1).Color}}</p>
+        {{else}}
+            <p>Joueur : {{(index .Players 0).Name}}</p>
+            <p>Couleur : {{(index .Players 0).Color}}</p>
         {{end}}
 
         <div class="grille">

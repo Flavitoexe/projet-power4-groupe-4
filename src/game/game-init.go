@@ -16,6 +16,21 @@ func NewPlayer(name string, color string) Player {
 	return player
 }
 
+func InitGrille() Grille {
+
+	rows, cols := 6, 7
+	board := make([][]string, rows)
+
+	for i := range board {
+		board[i] = make([]string, cols)
+
+		for j := range board[i] {
+			board[i][j] = " "
+		}
+	}
+	return Grille{Board: board}
+}
+
 func TraitementPlayerInit(name string) error {
 
 	name = strings.TrimSpace(name)

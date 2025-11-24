@@ -6,14 +6,21 @@ import (
 	"html/template"
 	"net/http"
 	"os"
+	"strconv"
 )
 
 func main() {
 
-	data := struct {
-		Grid    game.Grille
-		Players []game.Player
-	}{}
+	type GameState struct {
+		Grid        game.Grille
+		Players     [2]game.Player
+		CurrentTurn int
+		IsEvenTurn  bool
+	}
+
+	var currentGame GameState
+
+	currentGame.IsEvenTurn = currentGame.CurrentTurn%2 == 0
 
 	listTemplates, errTemplate := template.ParseGlob("./templates/*.html")
 	if errTemplate != nil {
@@ -58,20 +65,35 @@ func main() {
 		player1 := game.NewPlayer(name1, color1)
 		player2 := game.NewPlayer(name2, color2)
 
-		data.Players = []game.Player{player1, player2}
+		currentGame.Players = [2]game.Player{player1, player2}
+		currentGame.Grid = game.InitGrille()
+		currentGame.CurrentTurn = 1
+		currentGame.IsEvenTurn = currentGame.CurrentTurn%2 == 0
 
 		http.Redirect(w, r, "/game/play", http.StatusSeeOther)
 	})
 
 	http.HandleFunc("/game/play", func(w http.ResponseWriter, r *http.Request) {
-		data.Grid = game.InitGrille()
-		listTemplates.ExecuteTemplate(w, "game-play", data)
+		listTemplates.ExecuteTemplate(w, "game-play", currentGame)
 	})
 
 	http.HandleFunc("/game/play/traitement", func(w http.ResponseWriter, r *http.Request) {
 		if r.Method != http.MethodPost {
 			http.Redirect(w, r, "/game/play", http.StatusSeeOther)
+			return
 		}
+
+		colStr := r.FormValue("colonne")
+		colInt, err := strconv.Atoi(colStr)
+		if err != nil || colInt < 1 || colInt > 7 {
+			http.Redirect(w, r, "/game/play", http.StatusSeeOther)
+			return
+		}
+
+		game.GamePlay(&currentGame.Grid, colInt, currentGame.Players, &currentGame.CurrentTurn)
+
+		http.Redirect(w, r, "/game/play", http.StatusSeeOther)
+		return
 	})
 
 	path, _ := os.Getwd()

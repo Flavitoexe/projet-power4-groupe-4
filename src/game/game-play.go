@@ -8,6 +8,7 @@ func addPion(grille *Grille, col int, player Player) bool {
 
 	nLigne := -1
 
+	// Recherche de la colonne et vérification si elle est pleine
 	for i := len(grille.Board) - 1; i >= 0; i-- {
 		if grille.Board[i][col-1] == " " {
 			nLigne = i
@@ -15,10 +16,12 @@ func addPion(grille *Grille, col int, player Player) bool {
 		}
 	}
 
+	// Colonne pleine
 	if nLigne == -1 {
 		return false
 	}
 
+	// Ajout du pion dans la grille
 	grille.Board[nLigne][col-1] = player.Color
 	return true
 }
@@ -73,16 +76,19 @@ func GamePlay(grille *Grille, col int, players [2]Player, currentTurn *int, isEv
 		player = players[1]
 	}
 
+	// Condition si colonne pleine
 	if !addPion(grille, col, player) {
 		// fmt.Println("Colonne pleine")
 		return Player{"fullCol", "None", false}
 	}
 
+	// Changement de tour
 	*currentTurn++
 	*isEvenTurn = !*isEvenTurn
 
 	winner := checkWin(grille, players)
 
+	// Vérification si un joueur a gagné
 	if winner.Name != "" {
 		return winner
 	}

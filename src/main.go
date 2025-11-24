@@ -16,6 +16,7 @@ func main() {
 		Players     [2]game.Player
 		CurrentTurn int
 		IsEvenTurn  bool
+		Error       string
 	}
 
 	var currentGame GameState
@@ -35,10 +36,8 @@ func main() {
 
 	// Routes d'initialisation du jeu
 	http.HandleFunc("/game/init", func(w http.ResponseWriter, r *http.Request) {
-		err := r.URL.Query().Get("error")
-		listTemplates.ExecuteTemplate(w, "game-init", map[string]string{
-			"Error": err,
-		})
+		currentGame.Error = r.URL.Query().Get("error")
+		listTemplates.ExecuteTemplate(w, "game-init", currentGame)
 	})
 
 	http.HandleFunc("/game/init/traitement", func(w http.ResponseWriter, r *http.Request) {
@@ -81,6 +80,7 @@ func main() {
 
 	// Routes de fonctionnement du jeu
 	http.HandleFunc("/game/play", func(w http.ResponseWriter, r *http.Request) {
+		currentGame.Error = r.URL.Query().Get("error")
 		listTemplates.ExecuteTemplate(w, "game-play", currentGame)
 	})
 

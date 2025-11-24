@@ -49,12 +49,16 @@
                     </div>
                 </div>
 
-                <button class="button" type="submit">Envoyer</button>
-                {{if eq .Error "1"}}
-                <p class="error">Pseudo invalide</p>
+                <button type="submit">Envoyer</button>
+                {{if eq .Error "sameName"}}
+                <p class="error">Pseudos similaires</p>
                 {{end}}
 
-                {{if eq .Error "2"}}
+                {{if eq .Error "emptyName"}}
+                <p class="error">Pseudos vides.</p>
+                {{end}}
+
+                {{if eq .Error "sameColor"}}
                 <p class="error">Couleurs similaires</p>
                 {{end}}
             </form>

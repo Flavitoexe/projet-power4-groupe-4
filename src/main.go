@@ -86,7 +86,7 @@ func main() {
 		colStr := r.FormValue("colonne")
 		colInt, err := strconv.Atoi(colStr)
 		if err != nil || colInt < 1 || colInt > 7 {
-			http.Redirect(w, r, "/game/play", http.StatusSeeOther)
+			http.Redirect(w, r, "/game/play?error=col", http.StatusSeeOther)
 			return
 		}
 

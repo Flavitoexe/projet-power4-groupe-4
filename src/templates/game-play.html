@@ -1,0 +1,61 @@
+{{define "game-play"}}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Partie puissance 4 en cours</title>
+</head>
+<body>
+    <h2>SILENCE, partie en cours</h2>
+    <p>Vous devez choisir où vous voulez placer votre pion grâce au menu déroulant.</p>
+
+    <div class="div">
+
+        <p>Tour: {{.CurrentTurn}}</p>
+
+        {{if .IsEvenTurn}}
+            <p>Joueur : {{(index .Players 0).Name}}</p>
+            <p>Couleur : {{(index .Players 0).Color}}</p>
+        {{else}}
+            <p>Joueur : {{(index .Players 1).Name}}</p>
+            <p>Couleur : {{(index .Players 1).Color}}</p>
+        {{end}}
+
+        <div class="grille">
+            {{range $i, $ligne := .Grid.Board}}
+                {{range $j, $case := $ligne}}
+                    {{if eq $case "rouge"}}
+                        <div class="case-rouge"></div>
+                    {{else if eq $case "jaune"}}
+                        <div class="case-jaune"></div>
+                    {{else}}
+                        <div class="case"></div>
+                    {{end}}
+                {{end}}
+            {{end}}
+        </div>
+
+        <form action="/game/play/traitement" method="post" class="colChoice">
+            <label for="colonne">Quelle colonne choisissez-vous ? </label>
+            <select id="colonne" name="colonne">
+                <optgroup label="Numéros">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                </optgroup>
+            </select>
+
+            <button type="submit">Envoyer</button>
+        </form>
+
+    </div>
+
+</body>
+</html>
+{{end}}

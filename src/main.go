@@ -29,6 +29,12 @@ func main() {
 		listTemplates.ExecuteTemplate(w, "game-play", grille)
 	})
 
+	http.HandleFunc("/game/play/traitement", func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != http.MethodPost {
+			http.Redirect(w, r, "/game/init", http.StatusSeeOther)
+		}
+	})
+
 	path, _ := os.Getwd()
 	fileServer := http.FileServer(http.Dir(path + "/assets"))
 	http.Handle("/static/", http.StripPrefix("/static/", fileServer))

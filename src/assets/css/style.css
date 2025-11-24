@@ -8,15 +8,94 @@
     padding: 0px;
     box-sizing: border-box;
     font-family: "Roboto";
+    text-align: center;
 }
 
 body {
     background-color: #525257;
     color: white;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
 }
 
-.div {
+h1, h2 {
+    margin-top: 180px;
+    margin-bottom: 90px;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #3a3a3a;
+}
+
+
+.navigation {
+    width: 100vw;
+    height: 7vh;
+    position: fixed;
+    top: 0;
+    background-color: white;
+    color: #3a3a3a;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    font-weight: bold;
+}
+
+.lien {
+    box-sizing: border-box;
+    width: 45%;
+    display: flex;
+}
+
+.spaceLien {
+    padding-left: 20px;
+    padding-right: 50px;
+}
+
+.logo {
+    box-sizing: border-box;
+    width: 55%;
+    display: flex;
+}
+
+button {
+    border-radius: 10px;
+    color: #525257;
+    background-color: white;
+    text-shadow: 1px 1px 1px #000;
+    padding: 10px;
+}
+
+.boite {
     background-color: #3a3a3a;
+    border-radius: 20px;
+    border: 2px solid;
+    border-color: white;
+}
+
+.box {
+    width: 70vw;
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-bottom: 90px;
+}
+
+.box_2 {
+    width: 70vw;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-bottom: 90px;
 }
 
 .grille {
@@ -29,7 +108,7 @@ body {
     margin: 20px auto;
     padding: 10px;
     border-radius: 10px;
-  }
+}
 
 .case {
     width: 60px;
@@ -40,4 +119,8 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 30px;
+}
+
+.infoIta{
+    font-style: italic;
 }

@@ -56,11 +56,13 @@ func GamePlay(grille *Grille, col int, players [2]Player, currentTurn *int) {
 
 		if *currentTurn%2 != 0 {
 			for !addPion(grille, col, players[0]) {
+				fmt.Println(*currentTurn)
 				fmt.Println("Colonne pleine, choisissez-en une autre.")
 			}
 			(*currentTurn)++
 		} else {
 			for !addPion(grille, col, players[1]) {
+				fmt.Println(*currentTurn)
 				fmt.Println("Colonne pleine, choisissez-en une autre.")
 			}
 			(*currentTurn)++

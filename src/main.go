@@ -115,7 +115,8 @@ func main() {
 	})
 
 	http.HandleFunc("/game/end", func(w http.ResponseWriter, r *http.Request) {
-		listTemplates.ExecuteTemplate(w, "game-end", nil)
+		winner := r.URL.Query().Get("winner")
+		listTemplates.ExecuteTemplate(w, "game-end", winner)
 	})
 
 	http.HandleFunc("/game/scoreboard", func(w http.ResponseWriter, r *http.Request) {

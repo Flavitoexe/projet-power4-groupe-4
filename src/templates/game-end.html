@@ -11,7 +11,7 @@
         <div class="navigation">
             <div class="lien">
                 <div class="spaceLien"><a href="http://localhost:8000/">Menu</a></div>
-                <div><a href="#"> Scorebord</a></div>
+                <div><a href="#"> Scoreboard</a></div>
             </div>
             <div class="logo">
                 <div><a href="#"> /image/</a></div>
@@ -22,10 +22,11 @@
 
             <div class="boite box_end">
                 <div><h3>Résultat de la partie :</h3></div>
-                <!-- Ici il faudra gérer si il y a égalité. -->
+                {{if eq . "Egalité"}}
                 <div>Dommage, il y a égalité pour cette partie !</div>
-                <!-- Ici il faudra gérer qui a gagné. -->
-                <div>Bravo "speudo gagnant", tu as gagné "score" contre "speudo perdant" !</div>
+                {{else}}
+                <div>Bravo {{.}}, tu as gagné !</div>
+                {{end}}
             </div>
                 
             <!-- Il faut que je vois comment on recupère les speudos et couleurs. Normalement, c'est bon. -->

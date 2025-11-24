@@ -96,6 +96,14 @@ func main() {
 		return
 	})
 
+	http.HandleFunc("/game/end", func(w http.ResponseWriter, r *http.Request) {
+		listTemplates.ExecuteTemplate(w, "game-end", nil)
+	})
+
+	http.HandleFunc("/game/scoreboard", func(w http.ResponseWriter, r *http.Request) {
+		listTemplates.ExecuteTemplate(w, "game-scoreboard", nil)
+	})
+
 	path, _ := os.Getwd()
 	fileServer := http.FileServer(http.Dir(path + "/assets"))
 	http.Handle("/static/", http.StripPrefix("/static/", fileServer))

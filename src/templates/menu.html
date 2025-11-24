@@ -10,35 +10,40 @@
     </head>
 
     <body>
-        <header>
-
-        </header>
-
+        <div class="navigation">
+            <div class="lien">
+                <div class="spaceLien"><a href="http://localhost:8000/"> Menu</a></div>
+                <div><a href="http://localhost:8000/game/scoreboard"> Scorebord</a></div>
+            </div>
+            <div class="logo">
+                <div><a href="#"> /image/</a></div>
+            </div>
+        </div>
+        
         <main>
             <h1>Bienvenue dans Power'4 Web !</h1>
+            <div class="boite box">
 
-            <p>Déroulement :</p>
+                <div><h3>Déroulement: </h3></div>
 
-            <ul>
-                <li>
-                    Vous allez vous retrouver devant une grille composée de 7 colonnes et 6 lignes.
-                </li>
-                <li>
-                    Vous devez placer un pion tour par tour.
-                </li>
-                <li>
-                    Le but est d'être le premier à aligner 4 pions de sa couleur horizontalement, verticalement ou diagonalement.
+                <div>
+                    <ul>
+                        <li>
+                            Vous allez vous retrouver devant une grille composée de 7 colonnes et 6 lignes.
+                        </li>
+                        <li>
+                            Vous devez placer un pion tour par tour.
+                        </li>
+                        <li>
+                            Le but est d'être le premier à aligner 4 pions de sa couleur horizontalement, verticalement ou diagonalement.
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
-                </li>
-            </ul>
-
-            <a href="/game/init"><h3>Démarrer une partie</h3></a>
+            <button type="button"><a href="/game/init">Démarrer une partie</a></button>
+            
         </main>
-
-        <footer>
-
-        </footer>
     </body>
-
 </html>
 {{end}}

@@ -9,47 +9,44 @@
     </head>
 
     <body>
-        
-        <header>
-
-        </header>
+        <div class="navigation">
+            <div class="lien">
+                <div class="spaceLien"><a href="http://localhost:8000/"> Menu</a></div>
+                <div><a href="#"> Scorebord</a></div>
+            </div>
+            <div class="logo">
+                <div><a href="#"> /image/</a></div>
+            </div>
+        </div>
 
         <main>
 
-            <form action="/game/init/traitement" method="post" class="gameInit">
+            <form action="/game/init/traitement" method="post">
 
-                <h2>Veuillez entrer les informations suivantes avant de pouvoir commencer la partie.</h2>
-
-                <div>
-                    <label for="pseudoJoueur1">Pseudo joueur 1 : </label>
-                    <input type="text" id="pseudoJoueur1" name="pseudoJoueur1" placeholder=" Pseudo joueur 1" required>
-                    <p>* Le pseudo doit être composé de seulement 4 à 20 lettres.</p>
-                </div>
-
-                <div>
-                    <label for="couleurJoueur1">Couleur joueur 1 : </label>
-                    <select id="couleurJoueur1" name="couleurJoueur1">
-                        <optgroup label="Couleurs">
-                            <option value="rouge">Rouge</option>
-                            <option value="jaune">Jaune</option>
-                        </optgroup>
-                    </select>
-                </div>
-
-                 <div>
-                    <label for="pseudoJoueur2">Pseudo joueur 2 : </label>
-                    <input type="text" id="pseudoJoueur2" name="pseudoJoueur2" placeholder=" Pseudo joueur 2" required>
-                    <p>* Le pseudo doit être composé seulement de lettres et entre 4 et 20 caractères.</p>
-                </div>
-
-                <div>
-                    <label for="couleurJoueur2">Couleur joueur 2 : </label>
-                    <select id="couleurJoueur2" name="couleurJoueur2">
-                        <optgroup label="Couleurs">
-                            <option value="rouge">Rouge</option>
-                            <option value="jaune">Jaune</option>
-                        </optgroup>
-                    </select>
+                <h2>Entrer les informations suivantes avant de pouvoir commencer la partie !</h2>
+                <div class="boite box_2">
+                    <div>
+                        <h3>Tous les champs sont obligatoires</p>
+                    </div>
+                    <div>
+                        <label for="pseudoJoueur1">Pseudo du joueur 1: </label>
+                        <input type="text" id="pseudoJoueur1" name="pseudoJoueur1" placeholder=" Pseudo joueur 1" required>
+                        <p class="infoIta spaceInfo">* Le pseudo doit être composé seulement de lettres et entre 4 et 20 caractères.</p>
+                    </div>
+                    <div>
+                        <label for="couleurJoueur1">Couleur du joueur 1: </label>
+                        <select id="couleurJoueur1" name="couleurJoueur1">
+                            <optgroup label="Couleurs">
+                                <option value="rouge">Rouge</option>
+                                <option value="jaune">Jaune</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="pseudoJoueur2">Pseudo du joueur 2: </label>
+                        <input type="text" id="pseudoJoueur2" name="pseudoJoueur2" placeholder=" Pseudo joueur 2" required>
+                        <p class="infoIta spaceInfo">* Le pseudo doit être composé seulement de lettres et entre 4 et 20 caractères.</p>
+                    </div>
                 </div>
 
                 <button type="submit">Envoyer</button>

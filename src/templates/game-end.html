@@ -1,0 +1,36 @@
+{{define "game-end"}}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/static/css/style.css">
+        <title>Partie finie !</title>
+    </head>
+    <body>
+        <div class="navigation">
+            <div class="lien">
+                <div class="spaceLien"><a href="http://localhost:8000/">Menu</a></div>
+                <div><a href="#"> Scorebord</a></div>
+            </div>
+            <div class="logo">
+                <div><a href="#"> /image/</a></div>
+            </div>
+        </div>
+        <main>
+            <h2>La partie est terminée !</h2>
+
+            <div class="boite box_end">
+                <div><h3>Résultat de la partie :</h3></div>
+                <!-- Ici il faudra gérer si il y a égalité. -->
+                <div>Dommage, il y a égalité pour cette partie !</div>
+                <!-- Ici il faudra gérer qui a gagné. -->
+                <div>Bravo "speudo gagnant", tu as gagné "score" contre "speudo perdant" !</div>
+            </div>
+                
+            <!-- Il faut que je vois comment on recupère les speudos et couleurs. Normalement, c'est bon. -->
+            <button type="button"><a href="/game/play">Rejouer</a></button>
+        </main>
+    </body>
+</html>
+{{end}}

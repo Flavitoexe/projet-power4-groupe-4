@@ -7,13 +7,12 @@ import (
 	"net/http"
 	"os"
 	"strconv"
-	"time"
 )
 
 func main() {
 
 	var currentGame game.GameState
-	var scoreBoard []game.GameResult
+	//var scoreBoard []game.GameResult
 
 	currentGame.IsEvenTurn = currentGame.CurrentTurn%2 == 0
 
@@ -25,7 +24,16 @@ func main() {
 
 	// Route principale
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		if r.URL.Path != "/" {
+			http.Redirect(w, r, "/error", http.StatusSeeOther)
+			return
+		}
+
 		listTemplates.ExecuteTemplate(w, "menu", nil)
+	})
+
+	http.HandleFunc("/error", func(w http.ResponseWriter, r *http.Request) {
+		listTemplates.ExecuteTemplate(w, "error", nil)
 	})
 
 	// Routes d'initialisation du jeu
@@ -114,8 +122,8 @@ func main() {
 	})
 
 	http.HandleFunc("game/end/traitement", func(w http.ResponseWriter, r *http.Request) {
-		now := time.Now()
-		dateStr := now.Format(time.UnixDate)
+		//now := time.Now()
+		//dateStr := now.Format(time.UnixDate)
 
 	})
 

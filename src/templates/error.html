@@ -1,11 +1,11 @@
-{{define "game-end"}}
+{{define "error"}}
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/static/css/style.css">
-        <title>Partie finie !</title>
+        <title>Error</title>
     </head>
     <body>
         <div class="navigation">
@@ -17,20 +17,18 @@
                 <div>● ○ ●</div>
             </div>
         </div>
-        <main>
-            <h2>La partie est terminée !</h2>
 
-            <div class="boite box_end">
-                <div><h3>Résultat de la partie :</h3></div>
-                {{if eq . "Egalité"}}
-                <div>Dommage, il y a égalité pour cette partie !</div>
-                {{else}}
-                <div>Bravo {{.}}, tu as gagné !</div>
-                {{end}}
+        <main>
+            <h2>ERROR</h2>
+
+            <div class="boite box_error">
+                <div><h3>Une erreur est survenue</h3></div>
+                <div>La page que vous essayez d'ouvrir n'existe pas. Veuillez vous dirigez vers le menu.</div>
             </div>
-                
-            <button type="button"><a href="/game/init">Rejouer</a></button>
+
+            <button type="button"><a href="http://localhost:8000/">Menu</a></button>
         </main>
     </body>
 </html>
+
 {{end}}

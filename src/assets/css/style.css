@@ -133,8 +133,8 @@ button {
 }
 
 .box_scoreboard {
-    width: 10vw;
-    height: 10vh;
+    width: 500px;
+    height: 200px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;

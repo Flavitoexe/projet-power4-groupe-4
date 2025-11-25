@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"os"
 	"strconv"
-	"time"
 )
 
 func main() {
@@ -32,15 +31,15 @@ func main() {
 	// Route principale
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		if r.URL.Path != "/" {
-			http.NotFound(w, r)
-			// Faire une redirection vers /error a la place du hhtp.NotFound
+			http.Redirect(w, r, "/error", http.StatusSeeOther)
 			return
 		}
+
 		listTemplates.ExecuteTemplate(w, "menu", nil)
 	})
 
 	http.HandleFunc("/error", func(w http.ResponseWriter, r *http.Request) {
-		listTemplates.ExecuteTemplate(w, "error")
+		listTemplates.ExecuteTemplate(w, "error", nil)
 	})
 
 	// Routes d'initialisation du jeu
@@ -133,9 +132,9 @@ func main() {
 		listTemplates.ExecuteTemplate(w, "game-end", winner)
 	})
 
-	http.HandleFunc("/game/end/traitement", func(w http.ResponseWriter, r *http.Request) {
-		now := time.Now()
-		dateStr := now.Format("02-01-2006 15:04:05")
+	http.HandleFunc("game/end/traitement", func(w http.ResponseWriter, r *http.Request) {
+		//now := time.Now()
+		//dateStr := now.Format(time.UnixDate)
 
 		http.Redirect(w, r, "/", http.StatusSeeOther)
 		return

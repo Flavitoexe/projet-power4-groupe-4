@@ -78,7 +78,6 @@ func GamePlay(grille *Grille, col int, players [2]Player, currentTurn *int, isEv
 
 	// Condition si colonne pleine
 	if !addPion(grille, col, player) {
-		// fmt.Println("Colonne pleine")
 		return Player{"fullCol", "None", false}
 	}
 

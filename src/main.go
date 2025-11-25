@@ -25,10 +25,10 @@ func main() {
 	// Route principale
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		if r.URL.Path != "/" {
-			http.NotFound(w, r)
-			// Faire une redirection vers /error a la place du hhtp.NotFound
+			http.Redirect(w, r, "/error", http.StatusSeeOther)
 			return
 		}
+
 		listTemplates.ExecuteTemplate(w, "menu", nil)
 	})
 

@@ -27,12 +27,16 @@ body {
 
 .error {
     color: red;
-    padding-bottom: 30px;
+    padding-bottom: 20px;
+}
+
+.spaceError {
+    margin-top: 1vh;
 }
 
 h1, h2 {
-    margin-top: 180px;
-    margin-bottom: 90px;
+    margin-top: 20vh;
+    margin-bottom: 10vh;
 }
 
 ul {
@@ -98,7 +102,7 @@ button {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    margin-bottom: 90px;
+    margin-bottom: 10vh;
 }
 
 .box_2 {
@@ -107,7 +111,7 @@ button {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    margin-bottom: 30px;
+    margin-bottom: 5vh;
 }
 
 .box_error {
@@ -116,29 +120,46 @@ button {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    margin-bottom: 30px;
+    margin-bottom: 5vh;
 }
 
 .box_play {
     width: 70vw;
-    height: 70vh;
+    height: 75vh;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    padding-top: 10px;
 }
 
 .h2Play {
-    margin-top: 140px;
-    margin-bottom: 70px;
+    margin-top: 12vh;
+    margin-bottom: 5vh;
 }
 
 .box_end {
     width: 70vw;
-    height: 30vh;
+    height: 50vh;
     display: flex;
+    flex-direction: row;
+    margin-bottom: 6vh;
+}
+
+.box_mess {
+    display: flex;
+    justify-content: space-evenly; 
     flex-direction: column;
-    justify-content: space-evenly;
-    margin-bottom: 100px;
+    align-items: center;
+    box-sizing: content-box;
+    width: 50%;
+}
+
+.box_ascii {
+    box-sizing: content-box;
+    width: 50%;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
 }
 
 .box_scoreboard {
@@ -212,5 +233,6 @@ button {
 }
 
 .spaceInfo {
-    padding-top: 8px;
+    padding-top: 1vh;
 }
+

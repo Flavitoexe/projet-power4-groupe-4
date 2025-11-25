@@ -20,12 +20,14 @@
         <main>
             <h2>Bienvenue dans le scoreboard !</h2>
 
+            {{range .}}
             <div class="boite box_scoreboard">
-                <div>Joueurs : </div>
-                <div>Gagnant : </div>
-                <div>Date : </div>
+                <div>Joueurs : {{(index .Players 0).Name}} vs {{(index .Players 1).Name}}</div>
+                <div>Gagnant : {{.Winner.Name}}</div>
+                <div>Date : {{.Date}}</div>
+                <div>Nombres de tours : {{.NbrTours}}</div>
             </div>
-                
+            {{end}}
             <button type="button"><a href="http://localhost:8000/">Quitter</a></button>
         </main>
     </body>

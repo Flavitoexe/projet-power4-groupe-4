@@ -1,6 +1,6 @@
 {{define "game-init"}}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,7 +23,7 @@
 
             <form action="/game/init/traitement" method="post">
 
-                <h2>Entrer les informations suivantes avant de pouvoir commencer la partie !</h2>
+                <h2>Entrez les informations suivantes avant de pouvoir commencer la partie !</h2>
                 <div class="boite box_2">
                     <div>
                         <h3>Tous les champs sont obligatoires</p>
@@ -42,10 +42,20 @@
                             </optgroup>
                         </select>
                     </div>
+
                     <div>
                         <label for="pseudoJoueur2">Pseudo du joueur 2: </label>
                         <input type="text" id="pseudoJoueur2" name="pseudoJoueur2" placeholder=" Pseudo joueur 2" required>
                         <p class="infoIta spaceInfo">* Le pseudo doit être composé seulement de lettres et entre 4 et 20 caractères.</p>
+                    </div>
+                    <div>
+                        <label for="couleurJoueur2">Couleur du joueur 2: </label>
+                        <select id="couleurJoueur2" name="couleurJoueur2">
+                            <optgroup label="Couleurs">
+                                <option value="rouge">Rouge</option>
+                                <option value="jaune">Jaune</option>
+                            </optgroup>
+                        </select>
                     </div>
                 </div>
 

@@ -7,19 +7,13 @@ import (
 	"net/http"
 	"os"
 	"strconv"
+	"time"
 )
 
 func main() {
 
-	type GameState struct {
-		Grid        game.Grille
-		Players     [2]game.Player
-		CurrentTurn int
-		IsEvenTurn  bool
-		Error       string
-	}
-
-	var currentGame GameState
+	var currentGame game.GameState
+	var scoreBoard []game.GameResult
 
 	currentGame.IsEvenTurn = currentGame.CurrentTurn%2 == 0
 
@@ -117,6 +111,12 @@ func main() {
 	http.HandleFunc("/game/end", func(w http.ResponseWriter, r *http.Request) {
 		winner := r.URL.Query().Get("winner")
 		listTemplates.ExecuteTemplate(w, "game-end", winner)
+	})
+
+	http.HandleFunc("game/end/traitement", func(w http.ResponseWriter, r *http.Request) {
+		now := time.Now()
+		dateStr := now.Format(time.UnixDate)
+
 	})
 
 	http.HandleFunc("/game/scoreboard", func(w http.ResponseWriter, r *http.Request) {

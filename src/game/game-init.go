@@ -6,12 +6,6 @@ import (
 	"strings"
 )
 
-type Player struct {
-	Name   string
-	Color  string
-	HasWon bool
-}
-
 func NewPlayer(name string, color string) Player {
 	player := Player{name, color, false}
 	return player

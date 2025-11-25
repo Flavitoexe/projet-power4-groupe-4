@@ -61,7 +61,7 @@ a {
 
 .lien {
     box-sizing: border-box;
-    width: 45%;
+    width: 48%;
     display: flex;
 }
 
@@ -72,8 +72,9 @@ a {
 
 .logo {
     box-sizing: border-box;
-    width: 55%;
+    width: 52%;
     display: flex;
+    font-size: xx-large;
 }
 
 button {
@@ -107,6 +108,19 @@ button {
     flex-direction: column;
     justify-content: space-evenly;
     margin-bottom: 90px;
+}
+
+.box_play {
+    width: 70vw;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.h2Play {
+    margin-top: 140px;
+    margin-bottom: 70px;
 }
 
 .box_end {

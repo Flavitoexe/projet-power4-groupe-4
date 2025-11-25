@@ -22,8 +22,8 @@
 
             {{range .}}
             <div class="boite box_scoreboard">
-                <div>Joueurs : {{(index .Players 0).Name}} vs {{(index .Players 1).Name}}</div>
-                <div>Gagnant : {{.Winner.Name}}</div>
+                <div>Joueurs : {{(index .Players 0).Name}} VS {{(index .Players 1).Name}}</div>
+                <div>Gagnant : {{.Winner.Name}} avec la couleur {{.Winner.Color}}</div>
                 <div>Date : {{.Date}}</div>
                 <div>Nombres de tours : {{.NbrTours}}</div>
             </div>

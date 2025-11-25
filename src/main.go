@@ -7,19 +7,12 @@ import (
 	"net/http"
 	"os"
 	"strconv"
-	"time"
 )
 
 func main() {
 
-	type GameResult struct {
-		Players  [2]game.Player
-		Winner   game.Player
-		Date     string
-		NbrTours int
-	}
 	var currentGame game.GameState
-	var scoreBoard []GameResult
+	var scoreBoard []game.GameResult
 
 	currentGame.IsEvenTurn = currentGame.CurrentTurn%2 == 0
 
@@ -40,7 +33,7 @@ func main() {
 	})
 
 	http.HandleFunc("/error", func(w http.ResponseWriter, r *http.Request) {
-		listTemplates.ExecuteTemplate(w, "error")
+		listTemplates.ExecuteTemplate(w, "error", nil)
 	})
 
 	// Routes d'initialisation du jeu
@@ -117,9 +110,16 @@ func main() {
 			http.Redirect(w, r, "/game/play?error=fullCol", http.StatusSeeOther)
 			return
 		} else if winner.Name != "" {
+			if winner.Name == currentGame.Players[0].Name {
+				currentGame.Players[0].HasWon = true
+			} else if winner.Name == currentGame.Players[1].Name {
+				currentGame.Players[1].HasWon = true
+			}
+			scoreBoard = append(scoreBoard, game.GetScoreboard(currentGame))
 			http.Redirect(w, r, "/game/end?winner="+winner.Name, http.StatusSeeOther)
 			return
 		} else if winner.Name == "Egalité" {
+			scoreBoard = append(scoreBoard, game.GetScoreboard(currentGame))
 			http.Redirect(w, r, "/game/end?winner=Egalité", http.StatusSeeOther)
 			return
 		}
@@ -133,13 +133,11 @@ func main() {
 		listTemplates.ExecuteTemplate(w, "game-end", winner)
 	})
 
-	http.HandleFunc("/game/end/traitement", func(w http.ResponseWriter, r *http.Request) {
-		now := time.Now()
-		dateStr := now.Format("02-01-2006 15:04:05")
+	// http.HandleFunc("/game/end/traitement", func(w http.ResponseWriter, r *http.Request) {
 
-		http.Redirect(w, r, "/", http.StatusSeeOther)
-		return
-	})
+	// 	http.Redirect(w, r, "/", http.StatusSeeOther)
+	// 	return
+	// })
 
 	http.HandleFunc("/game/scoreboard", func(w http.ResponseWriter, r *http.Request) {
 		listTemplates.ExecuteTemplate(w, "game-scoreboard", scoreBoard)

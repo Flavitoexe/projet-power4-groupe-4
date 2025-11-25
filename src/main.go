@@ -80,6 +80,7 @@ func main() {
 		currentGame.Grid = game.InitGrille()
 		currentGame.CurrentTurn = 1
 		currentGame.IsEvenTurn = currentGame.CurrentTurn%2 == 0
+		// Essayer de mettre ca dans une focntion dans game-init.go
 
 		http.Redirect(w, r, "/game/play", http.StatusSeeOther)
 		return
@@ -110,16 +111,20 @@ func main() {
 			http.Redirect(w, r, "/game/play?error=fullCol", http.StatusSeeOther)
 			return
 		} else if winner.Name != "" {
-			if winner.Name == currentGame.Players[0].Name {
+			switch winner.Name {
+			case currentGame.Players[0].Name:
 				currentGame.Players[0].HasWon = true
-			} else if winner.Name == currentGame.Players[1].Name {
+
+			case currentGame.Players[1].Name:
 				currentGame.Players[1].HasWon = true
 			}
 			scoreBoard = append(scoreBoard, game.GetScoreboard(currentGame))
+
 			http.Redirect(w, r, "/game/end?winner="+winner.Name, http.StatusSeeOther)
 			return
 		} else if winner.Name == "Egalité" {
 			scoreBoard = append(scoreBoard, game.GetScoreboard(currentGame))
+
 			http.Redirect(w, r, "/game/end?winner=Egalité", http.StatusSeeOther)
 			return
 		}
@@ -133,11 +138,14 @@ func main() {
 		listTemplates.ExecuteTemplate(w, "game-end", winner)
 	})
 
-	// http.HandleFunc("/game/end/traitement", func(w http.ResponseWriter, r *http.Request) {
-
-	// 	http.Redirect(w, r, "/", http.StatusSeeOther)
-	// 	return
-	// })
+	http.HandleFunc("/game/replay", func(w http.ResponseWriter, r *http.Request) {
+		currentGame.Grid = game.InitGrille()
+		currentGame.CurrentTurn = 1
+		currentGame.IsEvenTurn = currentGame.CurrentTurn%2 == 0
+		currentGame.Players[0].HasWon = false
+		currentGame.Players[1].HasWon = false
+		http.Redirect(w, r, "/game/play", http.StatusSeeOther)
+	})
 
 	http.HandleFunc("/game/scoreboard", func(w http.ResponseWriter, r *http.Request) {
 		listTemplates.ExecuteTemplate(w, "game-scoreboard", scoreBoard)

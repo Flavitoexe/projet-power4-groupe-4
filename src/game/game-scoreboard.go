@@ -1,5 +1,6 @@
 package game
 
-func GetScoreboard(GameResults GameState) GameResult {
-
+func GetScoreboard(partieFinie GameState) GameResult {
+	// partieFinir.Players[0].haswon
+	return GameResult{}
 }

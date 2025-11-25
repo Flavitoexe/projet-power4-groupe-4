@@ -12,8 +12,14 @@ import (
 
 func main() {
 
+	type GameResult struct {
+		Players  [2]game.Player
+		Winner   game.Player
+		Date     string
+		NbrTours int
+	}
 	var currentGame game.GameState
-	var scoreBoard []game.GameResult
+	var scoreBoard []GameResult
 
 	currentGame.IsEvenTurn = currentGame.CurrentTurn%2 == 0
 
@@ -25,7 +31,16 @@ func main() {
 
 	// Route principale
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		if r.URL.Path != "/" {
+			http.NotFound(w, r)
+			// Faire une redirection vers /error a la place du hhtp.NotFound
+			return
+		}
 		listTemplates.ExecuteTemplate(w, "menu", nil)
+	})
+
+	http.HandleFunc("/error", func(w http.ResponseWriter, r *http.Request) {
+		listTemplates.ExecuteTemplate(w, "error")
 	})
 
 	// Routes d'initialisation du jeu
@@ -38,6 +53,7 @@ func main() {
 
 		if r.Method != http.MethodPost {
 			http.Redirect(w, r, "/game/init", http.StatusSeeOther)
+			return
 		}
 
 		name1 := r.FormValue("pseudoJoueur1")
@@ -51,14 +67,17 @@ func main() {
 
 		if err1 != nil || err2 != nil || name1 == name2 {
 			http.Redirect(w, r, "/game/init?error=sameName", http.StatusSeeOther)
+			return
 		}
 
 		if name1 == "" || name2 == "" {
 			http.Redirect(w, r, "/game/init?error=emptyName", http.StatusSeeOther)
+			return
 		}
 
 		if color1 == color2 {
 			http.Redirect(w, r, "/game/init?error=sameColor", http.StatusSeeOther)
+			return
 		}
 
 		player1 := game.NewPlayer(name1, color1)
@@ -70,6 +89,7 @@ func main() {
 		currentGame.IsEvenTurn = currentGame.CurrentTurn%2 == 0
 
 		http.Redirect(w, r, "/game/play", http.StatusSeeOther)
+		return
 	})
 
 	// Routes de fonctionnement du jeu
@@ -113,14 +133,16 @@ func main() {
 		listTemplates.ExecuteTemplate(w, "game-end", winner)
 	})
 
-	http.HandleFunc("game/end/traitement", func(w http.ResponseWriter, r *http.Request) {
+	http.HandleFunc("/game/end/traitement", func(w http.ResponseWriter, r *http.Request) {
 		now := time.Now()
-		dateStr := now.Format(time.UnixDate)
+		dateStr := now.Format("02-01-2006 15:04:05")
 
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+		return
 	})
 
 	http.HandleFunc("/game/scoreboard", func(w http.ResponseWriter, r *http.Request) {
-		listTemplates.ExecuteTemplate(w, "game-scoreboard", nil)
+		listTemplates.ExecuteTemplate(w, "game-scoreboard", scoreBoard)
 	})
 
 	path, _ := os.Getwd()

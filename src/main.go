@@ -1,13 +1,30 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"game/game"
 	"html/template"
 	"net/http"
+	"net/url"
 	"os"
 	"strconv"
 )
+
+var listTemplates *template.Template
+var errTemplate error
+
+func RenderTemplate(w http.ResponseWriter, r *http.Request, name string, data interface{}) {
+	var buffer bytes.Buffer
+
+	errRender := listTemplates.ExecuteTemplate(&buffer, name, data)
+	if errRender != nil {
+		http.Redirect(w, r, fmt.Sprintf("/error?code=%d&message%s", http.StatusInternalServerError,
+			url.QueryEscape("Une erreur est survenue lors du cgargement de la page")), http.StatusSeeOther)
+		return
+	}
+	buffer.WriteTo(w)
+}
 
 func main() {
 
@@ -16,7 +33,7 @@ func main() {
 
 	currentGame.IsEvenTurn = currentGame.CurrentTurn%2 == 0
 
-	listTemplates, errTemplate := template.ParseGlob("./templates/*.html")
+	listTemplates, errTemplate = template.ParseGlob("./templates/*.html")
 	if errTemplate != nil {
 		fmt.Println(errTemplate.Error())
 		os.Exit(1)
@@ -29,7 +46,7 @@ func main() {
 			return
 		}
 
-		listTemplates.ExecuteTemplate(w, "menu", nil)
+		RenderTemplate(w, r, "menu", nil)
 	})
 
 	// Route erreur

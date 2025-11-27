@@ -29,7 +29,7 @@ func main() {
 			return
 		}
 
-		listTemplates.ExecuteTemplate(w, "menu", nil)
+		game.RenderTemplate(w, r, "menu", nil)
 	})
 
 	// Route erreur

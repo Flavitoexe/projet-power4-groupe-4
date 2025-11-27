@@ -1,0 +1,49 @@
+{{define "menu"}}
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/static/css/style.css">
+        <title>Menu Principal</title>
+    </head>
+
+    <body>
+        <div class="navigation">
+            <div class="lien">
+                <div class="spaceLien"><a href="/">Menu</a></div>
+                <div><a href="/game/scoreboard">Scoreboard</a></div>
+            </div>
+            <div class="logo">
+                <div>● ○ ●</div>
+            </div>
+        </div>
+        
+        <main>
+            <h1>Bienvenue dans Power'4 Web !</h1>
+            <div class="boite box">
+
+                <div><h3>Déroulement: </h3></div>
+
+                <div>
+                    <ul>
+                        <li>
+                            Vous allez vous retrouver devant une grille composée de 7 colonnes et 6 lignes.
+                        </li>
+                        <li>
+                            Vous devez placer un pion tour par tour.
+                        </li>
+                        <li>
+                            Le but est d'être le premier à aligner 4 pions de sa couleur horizontalement, verticalement ou diagonalement.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <button type="button"><a href="/game/init">Démarrer une partie</a></button>
+            
+        </main>
+    </body>
+</html>
+{{end}}

@@ -1,0 +1,35 @@
+{{define "game-scoreboard"}}
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/static/css/style.css">
+        <title>Scoreboard</title>
+    </head>
+    <body>
+        <div class="navigation">
+            <div class="lien">
+                <div class="spaceLien"><a href="/">Menu</a></div>
+                <div><a href="#">Scoreboard</a></div>
+            </div>
+            <div class="logo">
+                <div>● ○ ●</div>
+            </div>
+        </div>
+        <main>
+            <h2>Bienvenue dans le scoreboard !</h2>
+
+            {{range .}}
+            <div class="boite box_scoreboard">
+                <div>Joueurs : {{(index .Players 0).Name}} VS {{(index .Players 1).Name}}</div>
+                <div>Gagnant : {{.Winner.Name}} avec la couleur {{.Winner.Color}}</div>
+                <div>Date : {{.Date}}</div>
+                <div>Nombres de tours : {{.NbrTours}}</div>
+            </div>
+            {{end}}
+            <button type="button"><a href="http://localhost:8000/">Quitter</a></button>
+        </main>
+    </body>
+</html>
+{{end}}

@@ -1,0 +1,238 @@
+@font-face {
+    font-family: "Roboto";
+    src: url("/static/fonts/Roboto-Regular.ttf");
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: "Roboto";
+    text-align: center;
+}
+
+body {
+    background-color: #525257;
+    color: white;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+
+.gameInit {
+    background-color: #3a3a3a;
+    color : white;
+    padding: 15px;
+}
+
+.error {
+    color: red;
+    padding-bottom: 20px;
+}
+
+.spaceError {
+    margin-top: 1vh;
+}
+
+h1, h2 {
+    margin-top: 20vh;
+    margin-bottom: 10vh;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #3a3a3a;
+}
+
+
+.navigation {
+    width: 100vw;
+    height: 7vh;
+    position: fixed;
+    top: 0;
+    background-color: white;
+    color: #3a3a3a;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    font-weight: bold;
+}
+
+.lien {
+    box-sizing: border-box;
+    width: 48%;
+    display: flex;
+}
+
+.spaceLien {
+    padding-left: 20px;
+    padding-right: 50px;
+}
+
+.logo {
+    box-sizing: border-box;
+    width: 52%;
+    display: flex;
+    font-size: xx-large;
+}
+
+button {
+    border-radius: 10px;
+    color: #525257;
+    background-color: white;
+    text-shadow: 1px 1px 1px #000;
+    padding: 10px;
+}
+
+.boite {
+    background-color: #3a3a3a;
+    border-radius: 20px;
+    border: 2px solid;
+    border-color: white;
+}
+
+.box {
+    width: 70vw;
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-bottom: 10vh;
+}
+
+.box_2 {
+    width: 70vw;
+    height: 45vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-bottom: 5vh;
+}
+
+.box_error {
+    width: 70vw;
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-bottom: 5vh;
+}
+
+.box_play {
+    width: 70vw;
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-top: 10px;
+}
+
+.h2Play {
+    margin-top: 12vh;
+    margin-bottom: 5vh;
+}
+
+.box_end {
+    width: 70vw;
+    height: 50vh;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 6vh;
+}
+
+.box_mess {
+    display: flex;
+    justify-content: space-evenly; 
+    flex-direction: column;
+    align-items: center;
+    box-sizing: content-box;
+    width: 50%;
+}
+
+.box_ascii {
+    box-sizing: content-box;
+    width: 50%;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
+.box_scoreboard {
+    width: 500px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-bottom: 30px;
+}
+
+.grille {
+    display: grid;
+    grid-template-columns: repeat(7, 60px);
+    grid-template-rows: repeat(6, 60px);
+    gap: 5px;
+    background-color: white;
+    width: max-content;
+    margin: 20px auto;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.case {
+    width: 60px;
+    height: 60px;
+    background-color: #3a3a3a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+}
+
+.case-rouge {
+    width: 60px;
+    height: 60px;
+    background-color: red;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+}
+
+.case-jaune {
+    width: 60px;
+    height: 60px;
+    background-color: yellow;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+}
+
+.case-jaune {
+    width: 60px;
+    height: 60px;
+    background-color: yellow;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+}
+
+.infoIta{
+    font-style: italic;
+    font-size: smaller;
+}
+
+.spaceInfo {
+    padding-top: 1vh;
+}
+

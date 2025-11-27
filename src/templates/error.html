@@ -1,0 +1,34 @@
+{{define "error"}}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/static/css/style.css">
+        <title>Error</title>
+    </head>
+    <body>
+        <div class="navigation">
+            <div class="lien">
+                <div class="spaceLien"><a href="/">Menu</a></div>
+                <div><a href="/game/scoreboard">Scoreboard</a></div>
+            </div>
+            <div class="logo">
+                <div>● ○ ●</div>
+            </div>
+        </div>
+
+        <main>
+            <h2>ERROR</h2>
+
+            <div class="boite box_error">
+                <div><h3>Une erreur est survenue</h3></div>
+                <div>La page que vous essayez d'ouvrir n'existe pas. Veuillez vous dirigez vers le menu.</div>
+            </div>
+
+            <button type="button"><a href="http://localhost:8000/">Menu</a></button>
+        </main>
+    </body>
+</html>
+
+{{end}}

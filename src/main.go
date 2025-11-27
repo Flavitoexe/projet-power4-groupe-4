@@ -32,6 +32,7 @@ func main() {
 		listTemplates.ExecuteTemplate(w, "menu", nil)
 	})
 
+	// Route erreur
 	http.HandleFunc("/error", func(w http.ResponseWriter, r *http.Request) {
 		listTemplates.ExecuteTemplate(w, "error", nil)
 	})
@@ -135,7 +136,18 @@ func main() {
 
 	http.HandleFunc("/game/end", func(w http.ResponseWriter, r *http.Request) {
 		winner := r.URL.Query().Get("winner")
-		listTemplates.ExecuteTemplate(w, "game-end", winner)
+
+		donnees := struct {
+			Winner    string
+			GagneLogo string
+			EgalLogo  string
+		}{
+			Winner:    winner,
+			GagneLogo: game.GagneLogo(),
+			EgalLogo:  game.EgalLogo(),
+		}
+
+		listTemplates.ExecuteTemplate(w, "game-end", donnees)
 	})
 
 	http.HandleFunc("/game/replay", func(w http.ResponseWriter, r *http.Request) {
